@@ -23,7 +23,7 @@ public class SpawnPlataform : MonoBehaviour
         {
             Transform p = Instantiate(plataforms[i], new Vector3(0, 0, i * 22), transform.rotation).transform; //instancia a plataforma na posicao 0,0,0
             currentPlatforms.Add(p); //adiciona a plataforma instanciada na lista de plataformas
-            offset += 22; //define a distancia entre as plataformas
+          
         }
 
         currentPlatformPoint = currentPlatforms[platformIndex].GetComponent<Plataform>().point; //define o ponto de spawn da primeira plataforma, no codigo Plataform.cs
@@ -35,11 +35,20 @@ public class SpawnPlataform : MonoBehaviour
     {
         float distance = player.position.z - currentPlatformPoint.position.z; //calcula a distancia entre o jogador e o ponto de spawn da plataforma atual
         Debug.Log("Distance: " + distance);
+        if (distance > -0.4277163f) //se a distancia for maior que 20, instancia uma nova plataforma
+        {
+            recicle(currentPlatforms[platformIndex].gameObject); //recicla a plataforma atual
+            platformIndex++; //incrementa o indice da plataforma atual
+            if (platformIndex >= currentPlatforms.Count) //se o indice da plataforma atual for maior que o numero de plataformas, reseta o indice
+            {
+                platformIndex = 0; //reseta o indice da plataforma atual
+            }
+        }
     }
 
     public void recicle(GameObject platform)
     {
         platform.transform.position = new Vector3(0, 0, plataforms.Count * offset); //move a plataforma para a posicao 0,0,0
-        offset += 22; //define a distancia entre as plataformas
+        offset += 8; //define a distancia entre as plataformas
     }
 }
