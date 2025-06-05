@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class InfiniteGroundSpawner : MonoBehaviour
 {
     public List<GameObject> groundPrefabs; // Lista de blocos diferentes.
-    public int poolSize = 10; // Quantos blocos no total
+    public int poolSize = 10; // Quantos blocos no total.
     public float groundLength = 10f; // Comprimento de cada bloco
     public Transform player; // Referência ao jogador
     public float spawnOffset = 30f; // Distância à frente do jogador para spawnar
